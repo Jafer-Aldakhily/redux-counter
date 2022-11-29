@@ -1,21 +1,22 @@
-import { useSelector,useDispatch } from "react-redux";
+// import { useSelector,useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
-function App() {
-  const counter = useSelector(state => state.counter)
-  const dispatch = useDispatch()
+function App(props) {
+  // const counter = useSelector(state => state.counter)
+  // const dispatch = useDispatch()
   const increment = () => {
-    dispatch({type : 'INC'})
+    props.dispatch({ type: "INC" })
   }
   const decrement = () => {
-    dispatch({type : 'DEC'})
+    props.dispatch({type:"DEC" })
   }
 
   const Add = () => {
-    dispatch({type: 'ADD',payload:10})
+    props.dispatch({ type: "ADD" ,payload:10})
   }
   return (
     <div>
-      <h1>Counter : {counter}</h1>
+      <h1>Counter : {props.counter}</h1>
       <button onClick={increment}>+</button>
       <button onClick={decrement}>-</button>
       <button onClick={Add}>+ Add 10</button>
@@ -23,4 +24,10 @@ function App() {
   );
 }
 
-export default App;
+const addStateToProps = (state) => {
+  return {
+    counter : state.counter
+  }
+}
+
+export default connect(addStateToProps)(App);

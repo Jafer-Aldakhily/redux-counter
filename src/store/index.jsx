@@ -8,7 +8,7 @@ const reducuer = (state = {counter : 0},action) => {
         case 'DEC' : 
         return {counter : state.counter - 1}
         case 'ADD' : 
-        return state + action.payload
+        return {counter : state.counter + action.payload}
         default : return state
     }
 }
